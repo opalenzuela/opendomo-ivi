@@ -1,6 +1,6 @@
 
  ***************************************************************************** 
-              P L A T A F O R M A   S C A D A    O P E N D O M O
+              P L A T A F O R M A   I V I    O P E N D O M O
  ***************************************************************************** 
  
  El presente módulo consistirá en una representación visual interactiva de los
@@ -9,7 +9,7 @@
  Características:
  ----------------
  
- 1. Multi-planta: el SCADA permitirá visualizar múltiples planos, por ejemplo 
+ 1. Multi-planta: el IVI permitirá visualizar múltiples planos, por ejemplo 
     uno para cada piso o zona a controlar. 
  2. Control directo interruptores: los puertos digitales de salida podrán 
     activarse y desactivarse mediante una pulsación.
