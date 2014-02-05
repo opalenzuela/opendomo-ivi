@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odcgi>
+<input type='hidden' id='theme-active' value='default'/>
+	<gui action='listControlPorts.sh' title='Puertos de control'>
+		<text id='ODC0004A33FFEDB/di000' readonly='true' label="di000">off</text>
+		<text id='ODC0004A33FFEDB/di001' readonly='true' label="di001">off</text>
+		<text id='ODC0004A33FFEDB/di002' readonly='true' label="di002">off</text>
+		<text id='ODC0004A33FFEDB/di003' readonly='true' label="di003">off</text>
+		<text id='ODC0004A33FFEDB/di004' readonly='true' label="di004">off</text>
+		<text id='ODC0004A33FFEDB/di005' readonly='true' label="di005">off</text>
+		<text id='ODC0004A33FFEDB/di006' readonly='true' label="di006">off</text>
+		<text id='ODC0004A33FFEDB/di007' readonly='true' label="di007">off</text>
+		<text id='ODC0004A340954F/di000' readonly='true' label="di000">off</text>
+		<text id='ODC0004A340954F/di001' readonly='true' label="di001">off</text>
+		<text id='ODC0004A340954F/di002' readonly='true' label="di002">off</text>
+		<text id='ODC0004A340954F/di003' readonly='true' label="di003">off</text>
+		<text id='ODC0004A340954F/di004' readonly='true' label="di004">off</text>
+		<text id='ODC0004A340954F/di005' readonly='true' label="di005">off</text>
+		<text id='ODC0004A340954F/di006' readonly='true' label="di006">off</text>
+		<text id='ODC0004A340954F/di007' readonly='true' label="di007">off</text>
+		<text id='ODC0004A33FFEDB/do000' readonly='false' label="di000">off</text>
+		<text id='ODC0004A33FFEDB/do001' readonly='false' label="do001">off</text>
+		<text id='ODC0004A33FFEDB/do002' readonly='false' label="do002">off</text>
+		<text id='ODC0004A33FFEDB/do003' readonly='false' label="do003">off</text>
+		<text id='ODC0004A33FFEDB/do004' readonly='false' label="do004">off</text>
+		<text id='ODC0004A33FFEDB/do005' readonly='false' label="do005">off</text>
+		<text id='ODC0004A33FFEDB/do006' readonly='false' label="do006">off</text>
+		<text id='ODC0004A33FFEDB/do007' readonly='false' label="do007">off</text>
+		<text id='ODC0004A340954F/do000' readonly='false' label="do000">off</text>
+		<text id='ODC0004A340954F/do001' readonly='false' label="do001">off</text>
+		<text id='ODC0004A340954F/do002' readonly='false' label="do002">off</text>
+		<text id='ODC0004A340954F/do003' readonly='false' label="do003">off</text>
+		<text id='ODC0004A340954F/do004' readonly='false' label="do004">off</text>
+		<text id='ODC0004A340954F/do005' readonly='false' label="do005">off</text>
+		<text id='ODC0004A340954F/do006' readonly='false' label="do006">off</text>
+		<text id='ODC0004A340954F/do007' readonly='false' label="do007">off</text>
+	</gui>
+	<actions>
+	</actions>
+</odcgi>
