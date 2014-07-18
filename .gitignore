@@ -6,3 +6,4 @@ files/isofiles/isolinux.cfg
 files/rpifiles/cmdline.txt
 files/sysconf
 .svn
+*.gz
