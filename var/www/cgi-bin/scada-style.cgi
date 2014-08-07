@@ -13,3 +13,4 @@ CFGDIR="/etc/opendomo/ivi"
 
 cd $CFGDIR
 cat *.css
+cat /var/www/themes/scada/default.css
