@@ -341,7 +341,7 @@ function updatePorts()
 			p.appendChild(a);
 			floor.appendChild(p);
 		}
-		$("#"+id+ " a").className = port.Value.toLowerCase();
+		$("#"+id+ " a").addClass(port.Value.toLowerCase());
 	}
 }
 
