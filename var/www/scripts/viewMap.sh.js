@@ -10,7 +10,7 @@ jQuery(function($) {
 		b.appendChild(iviframe);
 	}
 		
-	$("#ivi").html("<div id='titlebar'><img src='/images/options.gif'/><h1>OpenDomo IVI</h1><ul id='menu'></ul><div id='scada'></div></div>")
+	$("#ivi").html("<div id='titlebar'><h1>OpenDomo IVI v</h1><ul id='menu'></ul></div><div id='scada'></div>")
 	
 	$("#menu").html("<li onclick='reloadData();'><a href='#'><span class='ui-icon ui-icon-refresh'></span>Reload</a></li>\
 		<li><a href='#'>Capas</a><ul id='capas'></ul></li>\
