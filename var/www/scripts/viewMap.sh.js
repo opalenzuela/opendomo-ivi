@@ -256,12 +256,12 @@ function processData(xml) {
 }
 
 function reloadData() {
-	$.ajax({
+/*	$.ajax({
 		url: "/cgi-bin/od.cgi/listAllControlPorts.sh?GUI=XML",
 		context: this,
 		dataType: "xml",
 		success: processData
-	});		
+	});		 */
 }
 
 function refreshAlarms(){
