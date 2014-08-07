@@ -16,20 +16,20 @@ jQuery(function($) {
 	
 	$("#capas").html(" \
 		<li>\
-			<a onclick=\"hideLayer('light');\" id='m_light'><span class='ui-icon ui-icon-radio-on'></span>Luces</a>\
-			<a onclick=\"showLayer('light');\" id='b_light' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Luces</a>\
+			<a onclick=\"hideLayer('light');\" id='m_light'><span class='ui-icon ui-icon-radio-on'></span>Light</a>\
+			<a onclick=\"showLayer('light');\" id='b_light' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Light</a>\
 		 </li>\
 		 <li>\
-			<a onclick=\"hideLayer('fanhot');hideLayer('fancool');\" id='m_fanhot'><span class='ui-icon ui-icon-radio-on'></span>Clima</a>\
-			<a onclick=\"showLayer('fanhot');showLayer('fancool');\" id='b_fanhot' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Clima</a>\
+			<a onclick=\"hideLayer('fanhot');hideLayer('fancool');\" id='m_fanhot'><span class='ui-icon ui-icon-radio-on'></span>Climate</a>\
+			<a onclick=\"showLayer('fanhot');showLayer('fancool');\" id='b_fanhot' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Climate</a>\
 		 </li>\
 		 <li>\
-			<a onclick=\"hideLayer('cam');\" id='m_cam'><span class='ui-icon ui-icon-radio-on'></span>Cámaras</a>\
-			<a onclick=\"showLayer('cam');\" id='b_cam' style='display:none;'><span class="ui-icon ui-icon-radio-off"></span>Cámaras</a>\
+			<a onclick=\"hideLayer('cam');\" id='m_cam'><span class='ui-icon ui-icon-radio-on'></span>Cameras</a>\
+			<a onclick=\"showLayer('cam');\" id='b_cam' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Cameras</a>\
 		 </li>\
 		 <li>\
-			<a onclick=\"hideLayer('gauge');\" id='m_gauge'><span class='ui-icon ui-icon-radio-on'></span>Sondas</a>\
-			<a onclick=\"showLayer('gauge');\" id='b_gauge' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Sondas</a>\
+			<a onclick=\"hideLayer('gauge');\" id='m_gauge'><span class='ui-icon ui-icon-radio-on'></span>Sensors</a>\
+			<a onclick=\"showLayer('gauge');\" id='b_gauge' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Sensors</a>\
 		 </li>");
 	
 	$("#scada").html("<h3 id='level1_label'>planta 1</h3>\
