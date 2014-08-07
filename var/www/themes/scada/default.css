@@ -116,18 +116,16 @@ a{
 	position: fixed;
 	float: right;
 	z-index: 1000;
+	width: 300px;
 }
 #titlebar {
 	display: block;
-	float:right;
-	position:absolute;
 	z-index: 1000;
-	left: 850px;
 }
 
 #titlebar:hover #menu{
 	display: block;
-	float: left;
+	float: right;
 	position:absolute;
 }
 iframe {
