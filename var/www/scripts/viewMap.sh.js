@@ -138,6 +138,12 @@ jQuery(function($) {
 });
 
 
+function configureIVI() {
+	//TODO Make it persistent
+	$("div.block").draggable();
+	$("div.item").draggable();
+}
+
 function showLayer(layer) {
 	var theRules = new Array();
 	var reglayer = new RegExp(layer);	
@@ -284,3 +290,61 @@ function refreshAlarms(){
 function exitIVI() {
 	$("#iviframe").hide();
 }
+
+var portdata;
+var portcoordinates;
+function updatePorts()
+{
+	portdata = loadJSON("/data/odauto.json");
+	portcoordinates = loadJSON("/data/portcoordinates.json");
+	var floor = document.getElementById("level1");
+	
+	for(var i=0;i<portdata.ports.length;i++) {
+		var port = portdata.ports[i];
+		var id = port.Id.replace("/","_");
+		var p = document.getElementById(id);
+		if (!p) {
+			var p = document.createElement("div");
+			p.setAttribute("id",id);
+			p.className="item light"; //TODO: Read the right class
+			var a  = document.createElement("a");
+			a.setAttribute("id",port.Id.replace("/","_")+"_switch");
+			a.appendChild(document.createTextNode("light"));
+			p.appendChild(a);
+			floor.appendChild(p);
+		}
+		$("#"+id).addClass(port.Value);
+	}
+}
+
+function loadJSON(filePath) {
+  // Load json file;
+  var json = loadTextFileAjaxSync(filePath, "application/json");
+  // Parse json
+  return JSON.parse(json);
+}   
+
+// Load text with Ajax synchronously: takes path to file and optional MIME type
+function loadTextFileAjaxSync(filePath, mimeType)
+{
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.open("GET",filePath,false);
+  if (mimeType != null) {
+    if (xmlhttp.overrideMimeType) {
+      xmlhttp.overrideMimeType(mimeType);
+    }
+  }
+  xmlhttp.send();
+  if (xmlhttp.status==200)
+  {
+    return xmlhttp.responseText;
+  }
+  else {
+    // TODO Throw exception
+    return null;
+  }
+}
+
+
+
+setInterval(updatePorts,5000);
