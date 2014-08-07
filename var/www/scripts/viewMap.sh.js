@@ -43,7 +43,6 @@ jQuery(function($) {
 		<h3 id='level1_label'>planta 1</h3>\
 		<div id='level1' class='container'>\
 			<img src='/images/demo_planta1.png' class='floor'/>\
-			
 		</div>");
 		/* Some examples:
 		<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
