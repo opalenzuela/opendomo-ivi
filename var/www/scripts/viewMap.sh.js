@@ -39,26 +39,30 @@ jQuery(function($) {
 		<h3 id='level2_label'>planta 2</h3>\
 		<div id='level2' class='container'>\
 			<img src='/images/demo_planta2.png' class='floor'/>\
-			<div id='ODC0004A340954F_lvent' class='item light'  ><a id='ODC0004A340954F_lvent_switch'>light</a></div>\
-			<div id='ODC0004A340954F_lintr' class='item light'  ><a id='ODC0004A340954F_lintr_switch'>light</a></div>\
-			<div id='ODC0004A340954F_lreun' class='item light'  ><a id='ODC0004A340954F_lreun_switch'>light</a></div>\
-			<div id='ODC0004A340954F_m00cA' class='block light' ><a id='ODC0004A340954F_m00cA_switch'>light</a><div class='panel'><input type='text' size='2' id='ODC0004A340954F_m00cA_value'/><div id='ODC0004A340954F_m00cA_slide' class='slider'></div></div></div>				\
-			<div id='el_fan21' 	 class='block fancool' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan21_value'/><div id='el_fan21_slide' class='slider'></div></div></div>\
-			<div id='el_fan22' 	 class='block fanhot' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan22_value'/><div id='el_fan22_slide' class='slider'></div></div></div>\
-			<div id='el_fan23' 	 class='item fanhot' 	><a class='off'>fan</a></div>\
-			<div id='el_speak21' class='item speaker' ><a class='off'>music</a></div>\
-			<div id='el_speak22' class='item speaker' ><a class='on'>music</a></div>\
-			<div id='el_cam21'   class='block cam' ><a class='on'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
-			<div id='el_cam22'   class='block cam' ><a class='off'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
-			<div id='ODC0004A340954F_vt003'	 class='block' ><canvas id='ODC0004A340954F_vt003_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
-			<div id='ODC0004A340954F_vt004'	 class='block' ><canvas id='ODC0004A340954F_vt004_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
-			<div id='el_alarm11' class='block alarm' ><a class='off'>alarm</a><div class='screen'><iframe src='/noalerts_example.html'>Can't load frames</iframe></div></div> \
 		</div>\
 		<h3 id='level1_label'>planta 1</h3>\
 		<div id='level1' class='container'>\
 			<img src='/images/demo_planta1.png' class='floor'/>\
-			<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
+			
 		</div>");
+		/* Some examples:
+		<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
+		<div id='ODC0004A340954F_lvent' class='item light'  ><a id='ODC0004A340954F_lvent_switch'>light</a></div>\
+		<div id='ODC0004A340954F_lintr' class='item light'  ><a id='ODC0004A340954F_lintr_switch'>light</a></div>\
+		<div id='ODC0004A340954F_lreun' class='item light'  ><a id='ODC0004A340954F_lreun_switch'>light</a></div>\
+		<div id='ODC0004A340954F_m00cA' class='block light' ><a id='ODC0004A340954F_m00cA_switch'>light</a><div class='panel'><input type='text' size='2' id='ODC0004A340954F_m00cA_value'/><div id='ODC0004A340954F_m00cA_slide' class='slider'></div></div></div>				\
+		<div id='el_fan21' 	 class='block fancool' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan21_value'/><div id='el_fan21_slide' class='slider'></div></div></div>\
+		<div id='el_fan22' 	 class='block fanhot' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan22_value'/><div id='el_fan22_slide' class='slider'></div></div></div>\
+		<div id='el_fan23' 	 class='item fanhot' 	><a class='off'>fan</a></div>\
+		<div id='el_speak21' class='item speaker' ><a class='off'>music</a></div>\
+		<div id='el_speak22' class='item speaker' ><a class='on'>music</a></div>\
+		<div id='el_cam21'   class='block cam' ><a class='on'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
+		<div id='el_cam22'   class='block cam' ><a class='off'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
+		<div id='ODC0004A340954F_vt003'	 class='block' ><canvas id='ODC0004A340954F_vt003_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
+		<div id='ODC0004A340954F_vt004'	 class='block' ><canvas id='ODC0004A340954F_vt004_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
+		<div id='el_alarm11' class='block alarm' ><a class='off'>alarm</a><div class='screen'><iframe src='/noalerts_example.html'>Can't load frames</iframe></div></div> \		
+		*/
+		
 		
 	include_script("/scripts/jquery-ui.js");
 	include_script("/scripts/jquery.ui.touch-punch.js");
@@ -296,8 +300,9 @@ var portcoordinates;
 function updatePorts()
 {
 	portdata = loadJSON("/data/odauto.json");
-	portcoordinates = loadJSON("/data/portcoordinates.json");
-	var floor = document.getElementById("level1");
+	//portcoordinates = loadJSON("/data/portcoordinates.json");
+	//TODO: Allow level selection
+	var floor = document.getElementById("level2");
 	
 	for(var i=0;i<portdata.ports.length;i++) {
 		var port = portdata.ports[i];
@@ -334,11 +339,10 @@ function updatePorts()
 			var a  = document.createElement("a");
 			a.setAttribute("id",port.Id.replace("/","_")+"_switch");
 			a.appendChild(document.createTextNode(tag));
-			a.className = port.Value.toLowerCase();
 			p.appendChild(a);
 			floor.appendChild(p);
 		}
-		$("#"+id).addClass(port.Value);
+		$("#"+id+ " a").className = port.Value.toLowerCase();
 	}
 }
 
