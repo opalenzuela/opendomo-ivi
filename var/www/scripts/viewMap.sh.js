@@ -57,10 +57,79 @@ jQuery(function($) {
 			<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
 		</div>");
 		
-		include_script("/scripts/jquery-ui.js");
-		include_script("/scripts/jquery.ui.touch-punch.js");
-		include_script("/scripts/raphael-min.js");
-		include_script("/scripts/gauge.js");		
+	include_script("/scripts/jquery-ui.js");
+	include_script("/scripts/jquery.ui.touch-punch.js");
+	include_script("/scripts/raphael-min.js");
+	include_script("/scripts/gauge.js");
+		
+	// Activate the accordion effect
+	$("#scada").accordion();
+	// Enable the sliders
+	$(".slider").slider({
+		step:10,
+		orientation: "horizontal",
+		range: "min",
+		animate: true,
+		slide: sendScrollValue,
+		change: sendScrollValue
+	});
+	// Open/close panels
+	$(".block").click(function () {
+		$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
+	});
+
+	// Switching elements
+	$("div.item").click(function () {
+		var c = this.firstChild.className;
+		var nc = c;
+		// Switching 
+		if (c == "on") 	nc="off";
+		if (c == "off")	nc="on";	
+		this.title=nc;			
+		//alert(this.id);
+		$.ajax({
+			url: "/cgi-bin/od.cgi/setPort.sh?port="+this.id+"&value="+nc+"&GUI=XML",
+			context: this
+			}).done(function() {
+				this.children[0].setAttribute("class",this.title);
+			});
+			
+		//this.firstChild.setAttribute("class", nc);
+	});
+	
+	// Enabling the menu
+	$("#menu").menu();
+	
+	refreshAlarms();
+	
+	var gauge_array = document.getElementsByClassName("gauge");
+	var gaugeitems = new Array();
+	var gauge_opts = {
+		lines: 12, 
+		angle: 0.15, 
+		lineWidth: 0.5, 
+		pointer: {
+			length: 0.9, 
+			strokeWidth: 0.035, 
+			color: '#000000' 
+		},
+		min: 0,
+		max: 100,
+		colorStart:	'#6FADCF',   
+		colorStop: 	'#8FC0DA',   
+		strokeColor:	'#E0E0E0',  
+		generateGradient: true
+	};
+
+	for (i=0;i<gauge_array.length;i++) {
+		gaugeitems[i] = new Gauge(gauge_array[i]);
+		gaugeitems[i].setOptions(gauge_opts);
+		//gaugeitems[i].set(56);
+		gauge_array[i].control = gaugeitems[i];
+	}
+	
+	setInterval(reloadData,2000);
+	reloadData();
 });
 
 
@@ -208,73 +277,3 @@ function refreshAlarms(){
 }
 
 
-$(function() {
-	// Activate the accordion effect
-	$("#scada").accordion();
-	// Enable the sliders
-	$(".slider").slider({
-		step:10,
-		orientation: "horizontal",
-		range: "min",
-		animate: true,
-		slide: sendScrollValue,
-		change: sendScrollValue
-	});
-	// Open/close panels
-	$(".block").click(function () {
-		$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
-	});
-
-	// Switching elements
-	$("div.item").click(function () {
-		var c = this.firstChild.className;
-		var nc = c;
-		// Switching 
-		if (c == "on") 	nc="off";
-		if (c == "off")	nc="on";	
-		this.title=nc;			
-		//alert(this.id);
-		$.ajax({
-			url: "/cgi-bin/od.cgi/setPort.sh?port="+this.id+"&value="+nc+"&GUI=XML",
-			context: this
-			}).done(function() {
-				this.children[0].setAttribute("class",this.title);
-			});
-			
-		//this.firstChild.setAttribute("class", nc);
-	});
-	
-	// Enabling the menu
-	$("#menu").menu();
-	
-	refreshAlarms();
-	
-	var gauge_array = document.getElementsByClassName("gauge");
-	var gaugeitems = new Array();
-	var gauge_opts = {
-		lines: 12, 
-		angle: 0.15, 
-		lineWidth: 0.5, 
-		pointer: {
-			length: 0.9, 
-			strokeWidth: 0.035, 
-			color: '#000000' 
-		},
-		min: 0,
-		max: 100,
-		colorStart:	'#6FADCF',   
-		colorStop: 	'#8FC0DA',   
-		strokeColor:	'#E0E0E0',  
-		generateGradient: true
-	};
-
-	for (i=0;i<gauge_array.length;i++) {
-		gaugeitems[i] = new Gauge(gauge_array[i]);
-		gaugeitems[i].setOptions(gauge_opts);
-		//gaugeitems[i].set(56);
-		gauge_array[i].control = gaugeitems[i];
-	}
-	
-	setInterval(reloadData,2000);
-	reloadData();
-});
