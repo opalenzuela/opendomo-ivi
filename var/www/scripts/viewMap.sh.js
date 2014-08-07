@@ -303,13 +303,38 @@ function updatePorts()
 		var port = portdata.ports[i];
 		var id = port.Id.replace("/","_");
 		var p = document.getElementById(id);
+		var t = port.Type[3].toLowerCase();
+		var tag ="light";
+		switch(t){
+			case "l":
+			case "_":
+				tag="light";
+				break;
+			case "c":
+				tag="fanhot";
+				break;
+			case "s":
+				tag="security";
+				break;
+			case "p":
+				tag="power";
+				break;
+			case "m":
+				tag="measure";
+				break;
+			case "a":
+				tag="access";
+				break;				
+		}
+		
 		if (!p) {
 			var p = document.createElement("div");
 			p.setAttribute("id",id);
-			p.className="item light"; //TODO: Read the right class
+			p.className="item "+tag; 
 			var a  = document.createElement("a");
 			a.setAttribute("id",port.Id.replace("/","_")+"_switch");
-			a.appendChild(document.createTextNode("light"));
+			a.appendChild(document.createTextNode(tag));
+			a.className = port.Value.toLowerCase();
 			p.appendChild(a);
 			floor.appendChild(p);
 		}
