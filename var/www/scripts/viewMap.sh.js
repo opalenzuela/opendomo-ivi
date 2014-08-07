@@ -56,6 +56,11 @@ jQuery(function($) {
 			<img src='/images/demo_planta1.png' class='floor'/>\
 			<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
 		</div>");
+		
+		include_script("/scripts/jquery-ui.js");
+		include_script("/scripts/jquery.ui.touch-punch.js");
+		include_script("/scripts/raphael-min.js");
+		include_script("/scripts/gauge.js");		
 });
 
 
