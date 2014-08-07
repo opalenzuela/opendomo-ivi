@@ -12,7 +12,9 @@ jQuery(function($) {
 		
 	$("#ivi").html("<div id='titlebar'><img src='/images/options.gif'/><h1>OpenDomo IVI</h1><ul id='menu'></ul><div id='scada'></div>")
 	
-	$("#menu").html("<li onclick='reloadData();'><a href='#'><span class='ui-icon ui-icon-disk'></span>Recargar</a></li><li><a href='#'>Capas</a><ul id='capas'></ul></li>");
+	$("#menu").html("<li onclick='reloadData();'><a href='#'><span class='ui-icon ui-icon-disk'></span>Recargar</a></li>\
+		<li><a href='#'>Capas</a><ul id='capas'></ul></li>\
+		<li onclick='exitIVI()'><a href='#'><span class='ui-icon ui-icon-disk'></span>Exit</a></li>");
 	
 	$("#capas").html(" \
 		<li>\
@@ -278,4 +280,6 @@ function refreshAlarms(){
 	//$("a.alarm-on").parent("div").setAttribute("class","alarm");
 }
 
-
+function exitIVI() {
+	$("#iviframe").hide();
+}
