@@ -90,33 +90,7 @@ jQuery(function($) {
 		$("#menu").menu();
 		
 		refreshAlarms();
-		
-		var gauge_array = document.getElementsByClassName("gauge");
-		var gaugeitems = new Array();
-		var gauge_opts = {
-			lines: 12, 
-			angle: 0.15, 
-			lineWidth: 0.5, 
-			pointer: {
-				length: 0.9, 
-				strokeWidth: 0.035, 
-				color: '#000000' 
-			},
-			min: 0,
-			max: 100,
-			colorStart:	'#6FADCF',   
-			colorStop: 	'#8FC0DA',   
-			strokeColor:	'#E0E0E0',  
-			generateGradient: true
-		};
-
-		for (i=0;i<gauge_array.length;i++) {
-			gaugeitems[i] = new Gauge(gauge_array[i]);
-			gaugeitems[i].setOptions(gauge_opts);
-			//gaugeitems[i].set(56);
-			gauge_array[i].control = gaugeitems[i];
-		}
-		
+			
 		setInterval(reloadData,2000);
 		reloadData();
 	},1000);
@@ -276,6 +250,24 @@ function exitIVI() {
 	$("#iviframe").hide();
 }
 
+
+var gauge_opts = {
+	lines: 12, 
+	angle: 0.15, 
+	lineWidth: 0.5, 
+	pointer: {
+		length: 0.9, 
+		strokeWidth: 0.035, 
+		color: '#000000' 
+	},
+	min: 0,
+	max: 100,
+	colorStart:	'#6FADCF',   
+	colorStop: 	'#8FC0DA',   
+	strokeColor:	'#E0E0E0',  
+	generateGradient: true
+};
+
 var portdata;
 var portcoordinates;
 function updatePorts()
@@ -319,19 +311,33 @@ function updatePorts()
 			if (!p) {
 				var p = document.createElement("div");
 				p.setAttribute("id",id);
+				p.setAttribute("title",port.Id);
 				var a  = document.createElement("a");
 				a.setAttribute("id",port.Id.replace("/","_")+"_switch");
 				a.appendChild(document.createTextNode(tag));
 				if (type=="do" || type=="dv") {
 					p.className="item "+tag; 
+					a.onclick = function() {
+						var newval = this.className.indexOf("off")==-1?"off":"on";
+						var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.title+"&value="+newval;
+						$.get(uri,function(){
+							setTimeout(updatePorts,1000);
+							}
+						);
+					}
 				} else if (type=="di") { // Digital input. Ignore?
 					p.className = "hidden";
 				} else if (type=="ai"){ // Analog input
 					p.className="block "+tag;  
-					p.innerHTML = "<canvas id='" + id + "_gauge' class='gauge'>gauge</canvas>" +
-						"<div class='screen'><p>Show the data here</p></div>";
+					p.innerHTML = "<div class='screen'><p>Show the data here</p></div>";
+					var c = document.createElement("canvas");
+					c.className = "gauge";
+					c.setAttribute("id",id + "_gauge");
+					var g = new Gauge(c);
+					g.setOptions(gauge_opts);
 					value = parseFloat(value);
 				} else if (type=="ao" ||type=="av"){ // Analog output or virtual
+					p.className="block "+tag;  
 					p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
 						"<div id='"+id+"_slide' class='slider'></div></div>";
 					value = parseFloat(value);
@@ -349,6 +355,17 @@ function updatePorts()
 			console.log("Port omitted: "+e.message);
 		}
 	}
+	
+	var gauge_array = document.getElementsByClassName("gauge");
+	var gaugeitems = new Array();
+
+
+	/*for (i=0;i<gauge_array.length;i++) {
+		gaugeitems[i] = new Gauge(gauge_array[i]);
+		gaugeitems[i].setOptions(gauge_opts);
+		//gaugeitems[i].set(56);
+		gauge_array[i].control = gaugeitems[i];
+	} */	
 }
 
 		/* Some examples:
