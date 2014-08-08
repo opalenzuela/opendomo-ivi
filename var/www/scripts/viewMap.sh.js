@@ -291,7 +291,7 @@ function updatePorts()
 			var id = port.Id.replace("/","_");
 			var p = document.getElementById(id);
 			var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
-			var type = p.Type.substr(0,2).toLowerCase(); // di|do|ai|ao ...
+			var type = port.Type.substr(0,2).toLowerCase(); // di|do|ai|ao ...
 			var tag ="light";
 			var value = port.Value.toLowerCase();
 			switch(t){
