@@ -44,24 +44,6 @@ jQuery(function($) {
 		<div id='level1' class='container'>\
 			<img src='/images/demo_planta1.png' class='floor'/>\
 		</div>");
-		/* Some examples:
-		<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
-		<div id='ODC0004A340954F_lvent' class='item light'  ><a id='ODC0004A340954F_lvent_switch'>light</a></div>\
-		<div id='ODC0004A340954F_lintr' class='item light'  ><a id='ODC0004A340954F_lintr_switch'>light</a></div>\
-		<div id='ODC0004A340954F_lreun' class='item light'  ><a id='ODC0004A340954F_lreun_switch'>light</a></div>\
-		<div id='ODC0004A340954F_m00cA' class='block light' ><a id='ODC0004A340954F_m00cA_switch'>light</a><div class='panel'><input type='text' size='2' id='ODC0004A340954F_m00cA_value'/><div id='ODC0004A340954F_m00cA_slide' class='slider'></div></div></div>				\
-		<div id='el_fan21' 	 class='block fancool' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan21_value'/><div id='el_fan21_slide' class='slider'></div></div></div>\
-		<div id='el_fan22' 	 class='block fanhot' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan22_value'/><div id='el_fan22_slide' class='slider'></div></div></div>\
-		<div id='el_fan23' 	 class='item fanhot' 	><a class='off'>fan</a></div>\
-		<div id='el_speak21' class='item speaker' ><a class='off'>music</a></div>\
-		<div id='el_speak22' class='item speaker' ><a class='on'>music</a></div>\
-		<div id='el_cam21'   class='block cam' ><a class='on'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
-		<div id='el_cam22'   class='block cam' ><a class='off'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
-		<div id='ODC0004A340954F_vt003'	 class='block' ><canvas id='ODC0004A340954F_vt003_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
-		<div id='ODC0004A340954F_vt004'	 class='block' ><canvas id='ODC0004A340954F_vt004_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
-		<div id='el_alarm11' class='block alarm' ><a class='off'>alarm</a><div class='screen'><iframe src='/noalerts_example.html'>Can't load frames</iframe></div></div> \		
-		*/
-		
 		
 	include_script("/scripts/jquery-ui.js");
 	include_script("/scripts/jquery.ui.touch-punch.js");
@@ -308,7 +290,8 @@ function updatePorts()
 			var port = portdata.ports[i];
 			var id = port.Id.replace("/","_");
 			var p = document.getElementById(id);
-			var t = port.Type[3].toLowerCase();
+			var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
+			var type = p.Type.substr(0,2).toLowerCase(); // di|do|ai|ao ...
 			var tag ="light";
 			var value = port.Value.toLowerCase();
 			switch(t){
@@ -336,10 +319,23 @@ function updatePorts()
 			if (!p) {
 				var p = document.createElement("div");
 				p.setAttribute("id",id);
-				p.className="item "+tag; 
 				var a  = document.createElement("a");
 				a.setAttribute("id",port.Id.replace("/","_")+"_switch");
 				a.appendChild(document.createTextNode(tag));
+				if (type=="do" || type=="dv") {
+					p.className="item "+tag; 
+				} else if (type=="di") { // Digital input. Ignore?
+					p.className = "hidden";
+				} else if (type=="ai"){ // Analog input
+					p.className="block "+tag;  
+					p.innerHTML = "<canvas id='" + id + "_gauge' class='gauge'>gauge</canvas>" +
+						"<div class='screen'><p>Show the data here</p></div>";
+					value = parseFloat(value);
+				} else if (type=="ao" ||type=="av"){ // Analog output or virtual
+					p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
+						"<div id='"+id+"_slide' class='slider'></div></div>";
+					value = parseFloat(value);
+				}
 				p.appendChild(a);
 				floor.appendChild(p);
 			}
@@ -354,6 +350,24 @@ function updatePorts()
 		}
 	}
 }
+
+		/* Some examples:
+		<div id='el_alarm11' class='block alarm' ><a class='on'>alarm</a><div class='screen'><iframe src='/alerts_example.html'>Can't load frames</iframe></div></div>\
+		<div id='ODC0004A340954F_lvent' class='item light'  ><a id='ODC0004A340954F_lvent_switch'>light</a></div>\
+		<div id='ODC0004A340954F_lintr' class='item light'  ><a id='ODC0004A340954F_lintr_switch'>light</a></div>\
+		<div id='ODC0004A340954F_lreun' class='item light'  ><a id='ODC0004A340954F_lreun_switch'>light</a></div>\
+		<div id='ODC0004A340954F_m00cA' class='block light' ><a id='ODC0004A340954F_m00cA_switch'>light</a><div class='panel'><input type='text' size='2' id='ODC0004A340954F_m00cA_value'/><div id='ODC0004A340954F_m00cA_slide' class='slider'></div></div></div>				\
+		<div id='el_fan21' 	 class='block fancool' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan21_value'/><div id='el_fan21_slide' class='slider'></div></div></div>\
+		<div id='el_fan22' 	 class='block fanhot' ><a class='on'>fan</a><div class='panel'><input type='text' size='2' id='el_fan22_value'/><div id='el_fan22_slide' class='slider'></div></div></div>\
+		<div id='el_fan23' 	 class='item fanhot' 	><a class='off'>fan</a></div>\
+		<div id='el_speak21' class='item speaker' ><a class='off'>music</a></div>\
+		<div id='el_speak22' class='item speaker' ><a class='on'>music</a></div>\
+		<div id='el_cam21'   class='block cam' ><a class='on'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
+		<div id='el_cam22'   class='block cam' ><a class='off'>cam</a><div class='screen'><img src='/images/whitenoise1.gif'/></div></div>\
+		<div id='ODC0004A340954F_vt003'	 class='block' ><canvas id='ODC0004A340954F_vt003_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
+		<div id='ODC0004A340954F_vt004'	 class='block' ><canvas id='ODC0004A340954F_vt004_gauge' class='gauge'>gauge</canvas><div class='screen'><p>Show the data here</p></div></div>\
+		<div id='el_alarm11' class='block alarm' ><a class='off'>alarm</a><div class='screen'><iframe src='/noalerts_example.html'>Can't load frames</iframe></div></div> \		
+		*/
 
 function loadJSON(filePath) {
   // Load json file;
