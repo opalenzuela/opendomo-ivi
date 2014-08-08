@@ -348,9 +348,13 @@ function updatePorts()
 			
 			if (value=="") {
 				$("#"+id+ " a").addClass("hidden");
-			}else {
-				$("#"+id+ " a").addClass(value);
-			} 
+			}else if(value=="on"){
+				$("#"+id+ " a").removeClass("off");
+				$("#"+id+ " a").addClass("on");
+			} else if (value=="off"){
+				$("#"+id+ " a").removeClass("on");
+				$("#"+id+ " a").addClass("off");
+			}
 		}catch(e){
 			console.log("Port omitted: "+e.message);
 		}
