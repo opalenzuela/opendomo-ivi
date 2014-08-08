@@ -311,10 +311,10 @@ function updatePorts()
 			if (!p) {
 				var p = document.createElement("div");
 				p.setAttribute("id",id);
-				p.setAttribute("title",port.Id);
 				var a  = document.createElement("a");
 				a.setAttribute("id",port.Id.replace("/","_")+"_switch");
 				a.appendChild(document.createTextNode(tag));
+				a.setAttribute("title",port.Id);
 				if (type=="do" || type=="dv") {
 					p.className="item "+tag; 
 					a.onclick = function() {
