@@ -69,6 +69,7 @@ jQuery(function($) {
 
 		// Switching elements
 		$("div.item").click(function () {
+			if (configurationMode==false) return; // Ignore if we are dragging items
 			var c = this.firstChild.className;
 			var nc = c;
 			// Switching 
@@ -97,8 +98,10 @@ jQuery(function($) {
 });
 
 
+var configurationMode = false;
 function configureIVI() {
 	//TODO Make it persistent
+	configurationMode = true;	
 	$("div.block").draggable();
 	$("div.item").draggable();
 }
@@ -340,6 +343,9 @@ function updatePorts()
 					p.className="block "+tag;  
 					p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
 						"<div id='"+id+"_slide' class='slider'></div></div>";
+					p.onclick = function () {
+						$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
+					};						
 					value = parseFloat(value);
 				}
 				p.appendChild(a);
