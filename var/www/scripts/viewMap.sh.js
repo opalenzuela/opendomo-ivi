@@ -304,44 +304,54 @@ function updatePorts()
 	var floor = document.getElementById("level2");
 	
 	for(var i=0;i<portdata.ports.length;i++) {
-		var port = portdata.ports[i];
-		var id = port.Id.replace("/","_");
-		var p = document.getElementById(id);
-		var t = port.Type[3].toLowerCase();
-		var tag ="light";
-		switch(t){
-			case "l":
-			case "_":
-				tag="light";
-				break;
-			case "c":
-				tag="fanhot";
-				break;
-			case "s":
-				tag="security";
-				break;
-			case "p":
-				tag="power";
-				break;
-			case "m":
-				tag="measure";
-				break;
-			case "a":
-				tag="access";
-				break;				
+		try{
+			var port = portdata.ports[i];
+			var id = port.Id.replace("/","_");
+			var p = document.getElementById(id);
+			var t = port.Type[3].toLowerCase();
+			var tag ="light";
+			var value = port.Value.toLowerCase();
+			switch(t){
+				case "l":
+				case "_":
+					tag="light";
+					break;
+				case "c":
+					tag="fanhot";
+					break;
+				case "s":
+					tag="security";
+					break;
+				case "p":
+					tag="power";
+					break;
+				case "m":
+					tag="measure";
+					break;
+				case "a":
+					tag="access";
+					break;				
+			}
+			
+			if (!p) {
+				var p = document.createElement("div");
+				p.setAttribute("id",id);
+				p.className="item "+tag; 
+				var a  = document.createElement("a");
+				a.setAttribute("id",port.Id.replace("/","_")+"_switch");
+				a.appendChild(document.createTextNode(tag));
+				p.appendChild(a);
+				floor.appendChild(p);
+			}
+			
+			if (value=="") {
+				$("#"+id+ " a").addClass("hidden");
+			}else {
+				$("#"+id+ " a").addClass(value);
+			} 
+		}catch(e){
+			console.log("Port omitted: "+e.message);
 		}
-		
-		if (!p) {
-			var p = document.createElement("div");
-			p.setAttribute("id",id);
-			p.className="item "+tag; 
-			var a  = document.createElement("a");
-			a.setAttribute("id",port.Id.replace("/","_")+"_switch");
-			a.appendChild(document.createTextNode(tag));
-			p.appendChild(a);
-			floor.appendChild(p);
-		}
-		$("#"+id+ " a").addClass(port.Value.toLowerCase());
 	}
 }
 
