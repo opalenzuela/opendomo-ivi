@@ -287,9 +287,9 @@ function updatePorts()
 			var p = document.getElementById(id);
 			var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
 			var type = port.Type.substr(0,2).toLowerCase(); // di|do|ai|ao ...
-			var tag ="light";
+			var tag = port.Tag;
 			var value = port.Value.toLowerCase();
-			switch(t){
+			/*switch(t){
 				case "l":
 				case "_":
 					tag="light";
@@ -309,7 +309,7 @@ function updatePorts()
 				case "a":
 					tag="access";
 					break;				
-			}
+			}*/
 			
 			if (!p) {
 				var p = document.createElement("div");
