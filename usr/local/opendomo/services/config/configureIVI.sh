@@ -16,17 +16,21 @@ fi
 touch $CFGFILE
 
 # If parameters are specified, we save it
-if ! test -z "$1"
+if ! test -z "$3" 
 then
 	echo "FLOORS=$1" > $CFGFILE
+	for i in `seq 1 $FLOORS`
+	do
+		cp $TMPDIR/floor$i.jpg $CFGDIR/ 
+	done	
 fi
 
 source $CFGFILE
 
 echo "#>Configure map"
 echo "form:`basename $0`"
-echo "	floors	FLOORS	number	$FLOORS"
-for i in $FLOORS
+echo "	floors	Number of floors	number	$FLOORS"
+for i in `seq 1 $FLOORS`
 do
 	echo "	floor1	Floor number [$i]	file	floor$i.jpg"
 done
