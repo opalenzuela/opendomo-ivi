@@ -4,7 +4,6 @@
 #type:local
 
 # This script will allow the configuration of OD's IVI
-# If the configuration directory does not exist
 
 CFGDIR="/etc/opendomo/ivi"
 CFGFILE="$CFGDIR.conf"
@@ -15,13 +14,18 @@ then
 fi
 touch $CFGFILE
 
-# If parameters are specified, we save it
-if ! test -z "$3" 
+
+if test -z "$1" 
 then
+	# If NO parameters are specified, we move the images to TMP, so they can be edited
+	cp $CFGDIR/* $TMPDIR/
+else
+	# If parameters are specified, we save it
 	echo "FLOORS=$1" > $CFGFILE
+	echo "Saving floors to $1"
 	for i in `seq 1 $FLOORS`
 	do
-		cp $TMPDIR/floor$i.jpg $CFGDIR/ 
+		test -f $TMPDIR/floor$i.jpg && cp $TMPDIR/floor$i.jpg $CFGDIR/ 
 	done	
 fi
 
