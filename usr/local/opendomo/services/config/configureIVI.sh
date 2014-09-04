@@ -7,6 +7,7 @@
 
 CFGDIR="/etc/opendomo/ivi"
 CFGFILE="$CFGDIR.conf"
+TMPDIR="/var/opendomo/tmp"
 
 if ! test -d "$CFGDIR" 
 then
