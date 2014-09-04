@@ -11,6 +11,7 @@ CFGFILE="$CFGDIR.conf"
 if ! test -d "$CFGDIR" 
 then
 	mkdir $CFGDIR
+	echo "FLOORS=1" > $CFGFILE
 fi
 touch $CFGFILE
 

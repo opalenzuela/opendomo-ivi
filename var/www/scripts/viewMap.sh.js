@@ -43,6 +43,9 @@ jQuery(function($) {
 			<img src='/data/floor1.png' class='floor'/>\
 		</div>";
 	}
+	
+	if (floors.length==0) return;
+	
 	$("#scada").html(htmlcode);
 	
 	/*$("#scada").html("  \
