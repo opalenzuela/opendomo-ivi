@@ -35,7 +35,17 @@ jQuery(function($) {
 			<a onclick=\"showLayer('gauge');\" id='b_gauge' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Sensors</a>\
 		 </li>");
 	
-	$("#scada").html("  \
+	var floors = $(".floor");
+	var htmlcode ="";
+	for (var f=0;f<floors.length;f++) {
+		htmlcode = htmlcode +  "<h3 id='level" + f + "_label'>Floor " + f + "</h3>\
+		<div id='level" + f + "' class='container'>\
+			<img src='/data/floor1.png' class='floor'/>\
+		</div>";
+	}
+	$("#scada").html(htmlcode);
+	
+	/*$("#scada").html("  \
 		<h3 id='level2_label'>planta 2</h3>\
 		<div id='level2' class='container'>\
 			<img src='/images/demo_planta2.png' class='floor'/>\
@@ -44,6 +54,7 @@ jQuery(function($) {
 		<div id='level1' class='container'>\
 			<img src='/images/demo_planta1.png' class='floor'/>\
 		</div>");
+		*/
 		
 	include_script("/scripts/jquery-ui.js");
 	include_script("/scripts/jquery.ui.touch-punch.js");
