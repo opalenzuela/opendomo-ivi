@@ -1,5 +1,9 @@
 jQuery(function($) {
 	var id = document.getElementById("ivi");
+	
+	var floors = $(".floor");
+	if (floors.length==0) return;
+	
 	if (!id) {
 		var b = document.body;
 		var iviframe = document.createElement("div");
@@ -35,7 +39,7 @@ jQuery(function($) {
 			<a onclick=\"showLayer('gauge');\" id='b_gauge' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Sensors</a>\
 		 </li>");
 	
-	var floors = $(".floor");
+	
 	var htmlcode ="";
 	for (var f=0;f<floors.length;f++) {
 		htmlcode = htmlcode +  "<h3 id='level" + f + "_label'>Floor " + f + "</h3>\
@@ -44,7 +48,7 @@ jQuery(function($) {
 		</div>";
 	}
 	
-	if (floors.length==0) return;
+	
 	
 	$("#scada").html(htmlcode);
 	
