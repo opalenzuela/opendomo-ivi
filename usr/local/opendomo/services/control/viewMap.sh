@@ -15,10 +15,9 @@ then
 	echo "#LOAD Loading"
 	echo "list:`basename $0`"
 	cd /etc/opendomo/ivi/
-	for i in `seq 1 $FLOORS`
+	for i in *.*
 	do
-		file= `ls floor$i*` 2>/dev/null
-		echo "	floor$i floor$i	floor image $file"
+		echo "	$i $i	floor image $i"
 	done
 	
 else
