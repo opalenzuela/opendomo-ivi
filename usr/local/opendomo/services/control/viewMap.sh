@@ -14,7 +14,7 @@ then
 	source $CFGFILE
 	echo "#LOAD Loading"
 	echo "list:`basename $0`"
-	cd /var/www/ivi/
+	cd /etc/opendomo/ivi/
 	for i in `seq 1 $FLOORS`
 	do
 		file= `ls floor$i*` 2>/dev/null
