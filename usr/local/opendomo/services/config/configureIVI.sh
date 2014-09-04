@@ -25,7 +25,7 @@ else
 	echo "Saving floors to $1"
 	for i in `seq 1 $FLOORS`
 	do
-		test -f $TMPDIR/floor$i.jpg && cp $TMPDIR/floor$i.jpg $CFGDIR/ 
+		test -f $TMPDIR/floor$i.png && cp $TMPDIR/floor$i.png $CFGDIR/ 
 	done	
 fi
 
@@ -36,6 +36,6 @@ echo "form:`basename $0`"
 echo "	floors	Number of floors	number	$FLOORS"
 for i in `seq 1 $FLOORS`
 do
-	echo "	floor1	Floor number [$i]	file	floor$i.jpg"
+	echo "	floor1	Floor number [$i]	file	floor$i.png"
 done
 echo 
