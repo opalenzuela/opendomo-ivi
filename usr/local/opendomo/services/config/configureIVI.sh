@@ -26,7 +26,13 @@ else
 	echo "Saving floors to $1"
 	for i in `seq 1 $FLOORS`
 	do
-		test -f $TMPDIR/floor$i.png && cp $TMPDIR/floor$i.png $CFGDIR/ 
+		if test -f $TMPDIR/floor$i.png 
+		then
+			echo " File was found: $TMPDIR/floor$i.png"
+			cp $TMPDIR/floor$i.png $CFGDIR/ 
+		else
+			echo " File not found: $TMPDIR/floor$i.png"
+		fi
 	done	
 fi
 
