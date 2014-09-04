@@ -17,7 +17,7 @@ then
 	cd /etc/opendomo/ivi/
 	for i in *.*
 	do
-		echo "	$i $i	floor image $i"
+		echo "	$i	$i	image floor	$i"
 	done
 	
 else
