@@ -12,6 +12,12 @@ if test -d "$CFGDIR" && test -f "$CFGFILE"
 then
 	#TODO Check if odauto is working. Otherwise, it makes no sense to load IVI
 
+	
+	if test "$1" == "saveconf" && ! test -z "$3" 
+	then
+		echo "$3" > $CFGDIR/$2.css
+	fi
+	
 	cp /etc/opendomo/ivi/* /var/www/data/
 	source $CFGFILE
 	echo "#LOAD Loading"

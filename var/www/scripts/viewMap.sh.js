@@ -132,10 +132,18 @@ function configureIVI() {
 }
 
 function saveConfiguration() {
+	var cssfile = "";
 	$(".item, .block").each(function(index){
-		console.log("#" + this.id + "{left:" + this.offsetLeft + "; top: " + this.offsetTop + ";}");
+		cssfile = cssfile + "#" + this.id + "{left:" + this.offsetLeft + "; top: " + this.offsetTop + ";}";
 	});
 	$(".item, .block").css("border","none").css("border-radius","5px").draggable("destroy");
+	var url = "?saveconf=true&floor=floor1&css=" + encodeURI(cssfile);
+	$.ajax({
+		url: url,
+		context: this
+		}).done(function() {
+			alert("Configuration saved");
+		});	
 }
 
 function showLayer(layer) {
