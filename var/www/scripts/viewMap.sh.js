@@ -372,6 +372,10 @@ function updatePorts()
 						$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
 					};						
 					value = parseFloat(value);
+				} else if (type=="img"){ // Image
+					p.className="item "+tag;  
+					p.innerHTML = "<img src='" + value + "'>";
+
 				} else {
 					p.className = "hidden";
 				}
