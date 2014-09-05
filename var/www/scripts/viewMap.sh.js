@@ -310,7 +310,7 @@ function updatePorts()
 			var p = document.getElementById(id);
 			//var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
 			var type = port.Type.toLowerCase(); // di|do|ai|ao ...
-			var tag = port.Tag;
+			var tag = port.Tag?port.Tag:"light";
 			var value = port.Value.toLowerCase();
 			/*switch(t){
 				case "l":
@@ -343,6 +343,7 @@ function updatePorts()
 				a.setAttribute("title",port.Id);
 				if (type=="do" || type=="dv") {
 					p.className="item "+tag; 
+					a.className = value;
 					a.onclick = function() {
 						var newval = this.className.indexOf("off")==-1?"off":"on";
 						var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.title+"&value="+newval;
@@ -353,6 +354,7 @@ function updatePorts()
 					}
 				} else if (type=="di") { // Digital input. Ignore?
 					p.className = "hidden";
+					a.className = value;
 				} else if (type=="ai"){ // Analog input
 					p.className="block "+tag;  
 					p.innerHTML = "<div class='screen'><p>Show the data here</p></div>";

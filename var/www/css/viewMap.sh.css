@@ -17,3 +17,7 @@
 	-ms-user-select: none;
 	user-select: none;	
 }
+#ivi div.item {
+	height: 32px;
+	width: 32px;
+}
