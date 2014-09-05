@@ -88,6 +88,10 @@ jQuery(function($) {
 			$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
 		});
 
+		$( document ).tooltip({
+			track: true
+		});		
+		
 		// Switching elements
 		$("div.item").click(function () {
 			if (configurationMode==false) return; // Ignore if we are dragging items
@@ -125,6 +129,7 @@ function configureIVI() {
 	configurationMode = true;	
 	$("div.block").draggable();
 	$("div.item").draggable();
+	$(".item, .block").css("border","1px solid blue").css("border-radius","5px");
 }
 
 function showLayer(layer) {
