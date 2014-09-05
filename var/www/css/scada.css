@@ -59,6 +59,32 @@ a{
 .up>.on		{ background:url('/css/images/up-on.png');} 
 .down>.on	 	{ background:url('/css/images/down-on.png');} 
 
+
+/* Copied from listControlPorts */
+.power a,
+.energy a {
+	background: url("/images/energy.png") no-repeat left center;
+}
+.measure a,
+.climate a {
+	background: url("/images/climate.png") no-repeat left center;
+}
+.light a{
+	background: url("/images/light.png") no-repeat left center;
+}
+.access a,
+.security a{
+	background: url("/images/security.png") no-repeat left center;
+}
+.water a{
+	background: url("/images/water.png") no-repeat left center;
+}
+.gas a{
+	background: url("/images/gas.png") no-repeat left center;
+}
+/* End of copy */
+
+
 .light-on>.panel, .light-off>.panel {
 	display:none;
 }
