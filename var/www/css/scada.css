@@ -38,26 +38,26 @@ a{
 }
 
 /* Object's CLASS defines appearance */
-.light>.on 	{ background:url('/themes/scada/images/light.png');}
-.light>.off 	{ background:url('/themes/scada/images/light-off.png');}
-.fanhot>.on 	{ background:url('/themes/scada/images/fan-hot-on.png');}
-.fancool>.on 	{ background:url('/themes/scada/images/fan-cool-on.png');}
-.fanhot>.off 	{ background:url('/themes/scada/images/fan-off.png');}
-.fancool>.off	{ background:url('/themes/scada/images/fan-off.png');}
-.coffee>.on 	{ background:url('/themes/scada/images/coffee.png');}
-.coffee>.off 	{ background:url('/themes/scada/images/coffee-off.png');}
-.tv>.on 		{ background:url('/themes/scada/images/tv.png');}
-.tv>.off 		{ background:url('/themes/scada/images/tv-off.png');}
-.speaker>.on 	{ background:url('/themes/scada/images/speaker-on.png');}
-.speaker>.off 	{ background:url('/themes/scada/images/speaker-off.png');}
-.cam>.on 		{ background:url('/themes/scada/images/cam-on.png');}
-.cam>.off 	{ background:url('/themes/scada/images/cam-off.png');}
-.alarm>.on 	{ background:url('/themes/scada/images/alarm-on.png');}
-.alarm>.off	{ background:url('/themes/scada/images/alarm-off.png');}
-.up>a		{ background:url('/themes/scada/images/up.png');} 
-.down>a	 	{ background:url('/themes/scada/images/down.png');} 
-.up>.on		{ background:url('/themes/scada/images/up-on.png');} 
-.down>.on	 	{ background:url('/themes/scada/images/down-on.png');} 
+.light>.on 	{ background:url('/css/images/light.png');}
+.light>.off 	{ background:url('/css/images/light-off.png');}
+.fanhot>.on 	{ background:url('/css/images/fan-hot-on.png');}
+.fancool>.on 	{ background:url('/css/images/fan-cool-on.png');}
+.fanhot>.off 	{ background:url('/css/images/fan-off.png');}
+.fancool>.off	{ background:url('/css/images/fan-off.png');}
+.coffee>.on 	{ background:url('/css/images/coffee.png');}
+.coffee>.off 	{ background:url('/css/images/coffee-off.png');}
+.tv>.on 		{ background:url('/css/images/tv.png');}
+.tv>.off 		{ background:url('/css/images/tv-off.png');}
+.speaker>.on 	{ background:url('/css/images/speaker-on.png');}
+.speaker>.off 	{ background:url('/css/images/speaker-off.png');}
+.cam>.on 		{ background:url('/css/images/cam-on.png');}
+.cam>.off 	{ background:url('/css/images/cam-off.png');}
+.alarm>.on 	{ background:url('/css/images/alarm-on.png');}
+.alarm>.off	{ background:url('/css/images/alarm-off.png');}
+.up>a		{ background:url('/css/images/up.png');} 
+.down>a	 	{ background:url('/css/images/down.png');} 
+.up>.on		{ background:url('/css/images/up-on.png');} 
+.down>.on	 	{ background:url('/css/images/down-on.png');} 
 
 .light-on>.panel, .light-off>.panel {
 	display:none;

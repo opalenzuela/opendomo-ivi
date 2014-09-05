@@ -10,6 +10,8 @@ CFGFILE="$CFGDIR.conf"
 
 if test -d "$CFGDIR" && test -f "$CFGFILE"
 then
+	#TODO Check if odauto is working. Otherwise, it makes no sense to load IVI
+
 	cp /etc/opendomo/ivi/* /var/www/data/
 	source $CFGFILE
 	echo "#LOAD Loading"

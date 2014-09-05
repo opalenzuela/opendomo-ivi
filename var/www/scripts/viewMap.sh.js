@@ -298,6 +298,8 @@ function updatePorts()
 	//TODO: Allow level selection
 	var floor = document.getElementById("level2");
 	
+	if (portdata==null) return;
+	
 	for(var i=0;i<portdata.ports.length;i++) {
 		try{
 			var port = portdata.ports[i];
