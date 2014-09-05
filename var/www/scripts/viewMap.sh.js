@@ -63,10 +63,10 @@ jQuery(function($) {
 		</div>");
 		*/
 		
-	include_script("/scripts/jquery-ui.js");
-	include_script("/scripts/jquery.ui.touch-punch.js");
-	include_script("/scripts/raphael-min.js");
-	include_script("/scripts/gauge.js");
+	include_script("/scripts/vendor/jquery-ui.js");
+	include_script("/scripts/vendor/jquery.ui.touch-punch.js");
+	include_script("/scripts/vendor/raphael-min.js");
+	include_script("/scripts/vendor/gauge.js");
 	
 	setTimeout(function(){
 		// Activate the accordion effect
@@ -306,7 +306,7 @@ function updatePorts()
 			var id = port.Id.replace("/","_");
 			var p = document.getElementById(id);
 			var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
-			var type = port.Type.substr(0,2).toLowerCase(); // di|do|ai|ao ...
+			var type = port.Type.toLowerCase(); // di|do|ai|ao ...
 			var tag = port.Tag;
 			var value = port.Value.toLowerCase();
 			/*switch(t){
