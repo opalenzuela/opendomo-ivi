@@ -16,7 +16,7 @@ jQuery(function($) {
 		
 	$("#ivi").html("<div id='titlebar'><h1>OpenDomo IVI v</h1><ul id='menu'></ul></div><div id='scada'></div>")
 	
-	$("#menu").html("<li onclick='reloadData();'><a href='#'><span class='ui-icon ui-icon-refresh'></span>Reload</a></li>\
+	$("#menu").html("<li onclick='updatePorts();'><a href='#'><span class='ui-icon ui-icon-refresh'></span>Reload</a></li>\
 		<li><a href='#'>Capas</a><ul id='capas'></ul></li>\
 		<li onclick='configureIVI()'><a href='#'><span class='ui-icon ui-icon-gear'></span>Configure</a></li>\
 		<li onclick='exitIVI()'><a href='#'><span class='ui-icon ui-icon-close'></span>Exit</a></li>");
@@ -117,8 +117,8 @@ jQuery(function($) {
 		
 		refreshAlarms();
 			
-		setInterval(reloadData,2000);
-		reloadData();
+/*		setInterval(reloadData,2000);
+		reloadData(); */
 	},1000);
 });
 
@@ -258,14 +258,14 @@ function processData(xml) {
 	*/
 }
 
-function reloadData() {
-/*	$.ajax({
+/*function reloadData() {
+	$.ajax({
 		url: "/cgi-bin/od.cgi/listAllControlPorts.sh?GUI=XML",
 		context: this,
 		dataType: "xml",
 		success: processData
-	});		 */
-}
+	});		 
+} */
 
 function refreshAlarms(){
 	// TODO use the jQuery "beautiful" code
@@ -477,4 +477,4 @@ function loadTextFileAjaxSync(filePath, mimeType)
 
 
 
-setInterval(updatePorts,5000);
+setInterval(updatePorts,1000);
