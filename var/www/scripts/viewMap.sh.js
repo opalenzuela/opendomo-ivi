@@ -134,7 +134,7 @@ function configureIVI() {
 function saveConfiguration() {
 	var cssfile = "";
 	$(".item, .block").each(function(index){
-		cssfile = cssfile + "@" + this.id + "{left:" + this.offsetLeft + "px, top: " + this.offsetTop + ";px}";
+		cssfile = cssfile + "@" + this.id + "{left:" + this.offsetLeft + "px, top: " + this.offsetTop + "px,}";
 	});
 
 	var saveurl = "/cgi-bin/od.cgi/viewMap.sh?saveconf=saveconf&floor=floor1&data=" + encodeURIComponent(cssfile);
