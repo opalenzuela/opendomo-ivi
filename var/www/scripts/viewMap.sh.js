@@ -372,6 +372,8 @@ function updatePorts()
 						$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
 					};						
 					value = parseFloat(value);
+				} else {
+					p.className = "hidden";
 				}
 				p.appendChild(a);
 				floor.appendChild(p);
