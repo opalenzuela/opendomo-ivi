@@ -127,9 +127,15 @@ var configurationMode = false;
 function configureIVI() {
 	//TODO Make it persistent
 	configurationMode = true;	
-	$("div.block").draggable();
-	$("div.item").draggable();
-	$(".item, .block").css("border","1px solid blue").css("border-radius","5px");
+	$(".item, .block").css("border","1px solid blue").css("border-radius","5px").draggable();;
+	$("#titlebar").append("<input id='btnsaveconfig' type='button' value='Save changes' onclick='saveConfiguration()'>");
+}
+
+function saveConfiguration() {
+	$(".item, .block").each(function(index){
+		console.log("#" + this.id + "{left:" + this.offsetLeft + "; top: " + this.offsetTop + ";}");
+	});
+	$(".item, .block").css("border","none").css("border-radius","5px").draggable("destroy");
 }
 
 function showLayer(layer) {
