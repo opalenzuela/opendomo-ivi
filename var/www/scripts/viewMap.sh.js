@@ -41,10 +41,13 @@ jQuery(function($) {
 	
 	
 	var htmlcode ="";
+	var pages = $("#viewMap li");
 	for (var f=0;f<floors.length;f++) {
-		htmlcode = htmlcode +  "<h3 id='level" + f + "_label'>Floor " + f + "</h3>\
-		<div id='level" + f + "' class='container'>\
-			<img src='/data/floor1.png' class='floor'/>\
+		var floornum = f+1;
+		var imagepath = "/data/" + pages[f].id;
+		htmlcode = htmlcode +  "<h3 id='level" + floornum + "_label'>Floor " + floornum + "</h3>\
+		<div id='level" + floornum + "' class='container'>\
+			<img src='" + imagepath + "' class='floor'/>\
 		</div>";
 	}
 	
@@ -296,7 +299,7 @@ function updatePorts()
 	portdata = loadJSON("/data/odauto.json");
 	//portcoordinates = loadJSON("/data/portcoordinates.json");
 	//TODO: Allow level selection
-	var floor = document.getElementById("level2");
+	var floor = document.getElementById("level1");
 	
 	if (portdata==null) return;
 	
@@ -305,7 +308,7 @@ function updatePorts()
 			var port = portdata.ports[i];
 			var id = port.Id.replace("/","_");
 			var p = document.getElementById(id);
-			var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
+			//var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
 			var type = port.Type.toLowerCase(); // di|do|ai|ao ...
 			var tag = port.Tag;
 			var value = port.Value.toLowerCase();
