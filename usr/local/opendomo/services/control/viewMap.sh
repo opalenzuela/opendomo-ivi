@@ -15,7 +15,7 @@ then
 	
 	if test "$1" == "saveconf" && ! test -z "$3" 
 	then
-		echo "$3" > $CFGDIR/$2.css
+		echo "$3" | sed -e 's/,/;/g' -e 's/@/\n#/g' > $CFGDIR/.$2.css
 	fi
 	
 	cp /etc/opendomo/ivi/* /var/www/data/
@@ -23,7 +23,7 @@ then
 	echo "#LOAD Loading"
 	echo "list:`basename $0`"
 	cd /etc/opendomo/ivi/
-	for i in *.*
+	for i in *.png
 	do
 		echo "	$i	$i	image floor	$i"
 	done

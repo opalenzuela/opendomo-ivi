@@ -12,5 +12,5 @@ echo "
 CFGDIR="/etc/opendomo/ivi"
 
 cd $CFGDIR
-cat *.css
+cat .*.css
 cat /var/www/css/scada.css

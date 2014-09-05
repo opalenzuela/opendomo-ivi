@@ -134,15 +134,16 @@ function configureIVI() {
 function saveConfiguration() {
 	var cssfile = "";
 	$(".item, .block").each(function(index){
-		cssfile = cssfile + "#" + this.id + "{left:" + this.offsetLeft + "; top: " + this.offsetTop + ";}";
+		cssfile = cssfile + "@" + this.id + "{left:" + this.offsetLeft + "px, top: " + this.offsetTop + ";px}";
 	});
-	$(".item, .block").css("border","none").css("border-radius","5px").draggable("destroy");
-	var url = "?saveconf=true&floor=floor1&css=" + encodeURI(cssfile);
+
+	var saveurl = "/cgi-bin/od.cgi/viewMap.sh?saveconf=saveconf&floor=floor1&data=" + encodeURIComponent(cssfile);
 	$.ajax({
-		url: url,
+		url: saveurl,
 		context: this
 		}).done(function() {
 			alert("Configuration saved");
+			$(".item, .block").css("border","none").css("border-radius","5px").draggable("destroy");
 		});	
 }
 
