@@ -85,6 +85,7 @@ jQuery(function($) {
 		});
 		// Open/close panels
 		$(".block").click(function () {
+			if (configurationMode==true) return; // Ignore if we are dragging items
 			$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
 		});
 
@@ -94,7 +95,7 @@ jQuery(function($) {
 		
 		// Switching elements
 		$("div.item").click(function () {
-			if (configurationMode==false) return; // Ignore if we are dragging items
+			if (configurationMode==true) return; // Ignore if we are dragging items
 			var c = this.firstChild.className;
 			var nc = c;
 			// Switching 
