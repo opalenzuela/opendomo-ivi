@@ -26,3 +26,7 @@
 #btnsaveconfig{
 	float: right;
 }
+div.panel>input {
+	width: 25px;
+	min-width: 20px;
+}

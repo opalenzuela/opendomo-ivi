@@ -21,7 +21,7 @@ jQuery(function($) {
 		<li onclick='configureIVI()'><a href='#'><span class='ui-icon ui-icon-gear'></span>Configure</a></li>\
 		<li onclick='exitIVI()'><a href='#'><span class='ui-icon ui-icon-close'></span>Exit</a></li>");
 	
-	$("#capas").html(" \
+	/*$("#capas").html(" \
 		<li>\
 			<a onclick=\"hideLayer('light');\" id='m_light'><span class='ui-icon ui-icon-radio-on'></span>Light</a>\
 			<a onclick=\"showLayer('light');\" id='b_light' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Light</a>\
@@ -38,7 +38,7 @@ jQuery(function($) {
 			<a onclick=\"hideLayer('gauge');\" id='m_gauge'><span class='ui-icon ui-icon-radio-on'></span>Sensors</a>\
 			<a onclick=\"showLayer('gauge');\" id='b_gauge' style='display:none;'><span class='ui-icon ui-icon-radio-off'></span>Sensors</a>\
 		 </li>");
-	
+	*/
 	
 	var htmlcode ="";
 	var pages = $("#viewMap li");
