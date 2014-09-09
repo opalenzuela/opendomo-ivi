@@ -86,6 +86,14 @@ jQuery(function($) {
 		// Open/close panels
 		$(".block").click(function () {
 			if (configurationMode==true) return; // Ignore if we are dragging items
+			if ($(this).hasClass("expanded")) {
+				$(this).toggleClass("expanded");
+				$(this).find("div.panel").hide();
+			}else {
+				$(this).toggleClass("expanded");
+				$(this).find("div.panel").show();
+			}
+			
 			$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
 		});
 
