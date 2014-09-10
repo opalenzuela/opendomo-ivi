@@ -112,9 +112,10 @@ jQuery(function($) {
 			this.title=nc;			
 			//alert(this.id);
 			$.ajax({
-				url: "/cgi-bin/od.cgi/setPort.sh?port="+this.id+"&value="+nc+"&GUI=XML",
+				url: "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.id+"&value="+nc+"&GUI=XML",
 				context: this
 				}).done(function() {
+					$(this).toggle("highlight",{percent:0},500 );
 					this.children[0].setAttribute("class",this.title);
 				});
 				
