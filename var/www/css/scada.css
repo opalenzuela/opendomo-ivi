@@ -37,7 +37,7 @@ a{
 	background-repeat: no-repeat;
 }
 
-/* Object's CLASS defines appearance */
+/* Object's CLASS defines appearance  (disabled for homogeneity)
 .light>.on 	{ background:url('/css/images/light.png');}
 .light>.off 	{ background:url('/css/images/light-off.png');}
 .fanhot>.on 	{ background:url('/css/images/fan-hot-on.png');}
@@ -58,7 +58,7 @@ a{
 .down>a	 	{ background:url('/css/images/down.png');} 
 .up>.on		{ background:url('/css/images/up-on.png');} 
 .down>.on	 	{ background:url('/css/images/down-on.png');} 
-
+*/
 
 /* Copied from listControlPorts */
 .power a,
@@ -84,6 +84,10 @@ a{
 }
 /* End of copy */
 
+a.off {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
 
 .light-on>.panel, .light-off>.panel {
 	display:none;
