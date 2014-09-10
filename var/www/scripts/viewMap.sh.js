@@ -320,9 +320,11 @@ function updatePorts()
 							}
 						);
 					}
+					p.appendChild(a);
 				} else if (type=="di") { // Digital input. Ignore?
 					p.className = "hidden";
 					a.className = value;
+					p.appendChild(a);
 				} else if (type=="ai"){ // Analog input
 					p.className="block "+tag;  
 					p.innerHTML = "<div class='screen'><p>Show the data here</p></div>";
@@ -332,6 +334,7 @@ function updatePorts()
 					var g = new Gauge(c);
 					g.setOptions(gauge_opts);
 					value = parseFloat(value);
+					p.appendChild(a);
 				} else if (type=="ao" ||type=="av"){ // Analog output or virtual
 					p.className="block "+tag;  
 					p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
@@ -339,6 +342,7 @@ function updatePorts()
 					p.onclick = function () {
 						$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
 					};						
+					p.appendChild(a);
 					value = parseFloat(value);
 				} else if (type=="img"){ // Image
 					p.className="item "+tag;  
@@ -347,7 +351,7 @@ function updatePorts()
 				} else {
 					p.className = "hidden";
 				}
-				p.appendChild(a);
+				
 				floor.appendChild(p);
 			}
 			

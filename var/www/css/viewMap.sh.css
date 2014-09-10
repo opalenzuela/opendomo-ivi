@@ -30,3 +30,6 @@ div.panel>input {
 	width: 25px;
 	min-width: 20px;
 }
+div.item img {
+	border-radius: 10px;
+}
