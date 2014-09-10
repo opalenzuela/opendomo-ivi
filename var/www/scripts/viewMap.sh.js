@@ -313,7 +313,8 @@ function updatePorts()
 					a.className = value;
 					a.onclick = function() {
 						var newval = this.className.indexOf("off")==-1?"off":"on";
-						var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.title+"&value="+newval;
+						var portname = this.parentNode.id.replace("_","/");
+						var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+portname+"&value="+newval;
 						$.get(uri,function(){
 							//setTimeout(updatePorts,1000);
 							}
