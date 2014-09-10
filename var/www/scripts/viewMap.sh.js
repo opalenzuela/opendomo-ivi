@@ -423,7 +423,7 @@ function updatePorts()
 				$("#"+id+ " a").addClass("off");
 			}
 		}catch(e){
-			console.log("Port omitted: "+e.message);
+			console.log("Port " + id + " omitted: "+e.message);
 		}
 	}
 	
