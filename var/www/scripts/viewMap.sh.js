@@ -102,7 +102,7 @@ jQuery(function($) {
 		});		
 		
 		// Switching elements
-		$("div.item").click(function () {
+		/*$("div.item").click(function () {
 			if (configurationMode==true) return; // Ignore if we are dragging items
 			var c = this.firstChild.className;
 			var nc = c;
@@ -120,7 +120,7 @@ jQuery(function($) {
 				});
 				
 			//this.firstChild.setAttribute("class", nc);
-		});
+		});*/
 		
 		// Enabling the menu
 		$("#menu").menu();
@@ -205,7 +205,7 @@ function sendScrollValue (){
 	//$("#"+this.parentNode.parentNode.id+"_value").val(value);
 	//alert(this.parentNode.parentNode.id + " " + value);
 	$.ajax({
-		url: "/cgi-bin/od.cgi/setPort.sh?port="+this.parentNode.parentNode.id+"&value="+value+"&GUI=XML",
+		url: "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.parentNode.parentNode.id.replace("_","/")+"&value="+value+"&GUI=XML",
 		context: this
 	}).done(function() {
 		$("#"+this.parentNode.parentNode.id+"_value").val(value);
@@ -213,69 +213,6 @@ function sendScrollValue (){
 						
 }
 var donotsendupdate=0;
-
-function processData(xml) {
-	console.log("Process data called");
-	/*
-	var d = xml;
-	var ivi = document.getElementById("scada");
-	var lgf = document.getElementById("loginform");
-	
-	// No data or no login
-	if( $(xml).find("error")[0]) {
-		ivi.style.display='none';
-		lgf.style.display='block';
-	} else {
-		lgf.style.display='none';
-		ivi.style.display='block';	
-	}
-
-	$(xml).find("text").each(function()
-	{
-		value = this.childNodes[0].data;
-//		if (this.children.length!=0) { 
-			port = $(this).attr("id");
-		
-			var root_item = document.getElementById(port);
-			var is_item = document.getElementById(port+"_switch");
-			var is_slider = document.getElementById(port+"_slide");
-			var is_gauge = document.getElementById(port+"_gauge");
-			if (is_slider) {
-				//$("#"+port+"_slide").val(value);
-				if (root_item.childNodes[1].style.display=='none') {
-					donotsendupdate=1;
-					$("#"+port+"_slide").slider("value",value);
-					donotsendupdate=0;
-				}
-				if (is_item) {
-					if (parseFloat(value)==0) {
-						is_item.setAttribute("class","off");
-					} else {
-						is_item.setAttribute("class","on");
-					}
-				}
-			} else {
-				if (is_item) {
-					is_item.setAttribute("class",value);
-				}
-				if (is_gauge) {
-					is_gauge.control.set(parseInt(value));
-					//$("#"+port+"_gauge").set(value); 	
-				}
-			}
-//		}
-	});
-	*/
-}
-
-/*function reloadData() {
-	$.ajax({
-		url: "/cgi-bin/od.cgi/listAllControlPorts.sh?GUI=XML",
-		context: this,
-		dataType: "xml",
-		success: processData
-	});		 
-} */
 
 function refreshAlarms(){
 	// TODO use the jQuery "beautiful" code
@@ -378,7 +315,7 @@ function updatePorts()
 						var newval = this.className.indexOf("off")==-1?"off":"on";
 						var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.title+"&value="+newval;
 						$.get(uri,function(){
-							setTimeout(updatePorts,1000);
+							//setTimeout(updatePorts,1000);
 							}
 						);
 					}
@@ -487,4 +424,4 @@ function loadTextFileAjaxSync(filePath, mimeType)
 
 
 
-setInterval(updatePorts,1000);
+setInterval(updatePorts,2000);
