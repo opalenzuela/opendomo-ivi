@@ -86,7 +86,9 @@ a{
 
 a.off {
 	-webkit-filter: brightness(0.25);
-	filter: brightness(0.25);
+	-moz-filter: brightness(0.25);
+	filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='bright025'><feComponentTransfer><feFuncR type='linear' slope='0.25'/><feFuncG type='linear' slope='0.25' /><feFuncB type='linear' slope='0.25' /></feComponentTransfer></filter></svg>#bright025");
+	filter: brightness(0.25);	
 }
 
 .light-on>.panel, .light-off>.panel {
