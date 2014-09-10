@@ -85,8 +85,8 @@ a{
 /* End of copy */
 
 a.off {
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
+	-webkit-filter: brightness(0.25);
+	filter: brightness(0.25);
 }
 
 .light-on>.panel, .light-off>.panel {
