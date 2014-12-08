@@ -2,7 +2,7 @@
 ## Plataforma IVI 
  
  El presente módulo consistirá en una representación visual interactiva de los
- elementos de control que forman parte de un sistema OpenDomoOS.
+ elementos de control que forman parte de un sistema (OpenDomoOS)[https://github.com/opalenzuela/opendomo].
  
  Características:
  
