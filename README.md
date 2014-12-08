@@ -2,10 +2,9 @@
 ## Plataforma IVI 
  
  El presente módulo consistirá en una representación visual interactiva de los
- elementos de control que forman parte de un sistema OpenDomo.
+ elementos de control que forman parte de un sistema OpenDomoOS.
  
  Características:
- ----------------
  
  1. Multi-planta: el IVI permitirá visualizar múltiples planos, por ejemplo 
     uno para cada piso o zona a controlar. 
