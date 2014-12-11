@@ -30,9 +30,9 @@ a{
 }
 .container div a{
 	display: block; 
-	/*color:transparent!important; */
-	position: absolute; 
-	height: 48px;
+	/*color:transparent!important; 
+	position: absolute;  */
+	min-height: 48px;
 	min-width: 48px;
 	background-repeat: no-repeat;
 	text-align: center;
@@ -142,6 +142,10 @@ a.off {
 
 .alarm {
 	color: red;
+}
+
+.item, .block {
+	border-radius: 5px;
 }
 
 #menu {

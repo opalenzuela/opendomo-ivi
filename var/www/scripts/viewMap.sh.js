@@ -138,7 +138,7 @@ var configurationMode = false;
 function configureIVI() {
 	//TODO Make it persistent
 	configurationMode = true;	
-	$(".item, .block").css("border","1px solid blue").css("border-radius","5px").draggable();;
+	$(".item, .block").css("border","2px dashed #2A568E").draggable();;
 	$("#titlebar").append("<input id='btnsaveconfig' type='button' value='Save changes' onclick='saveConfiguration()'>");
 }
 
@@ -154,7 +154,7 @@ function saveConfiguration() {
 		context: this
 		}).done(function() {
 			alert("Configuration saved");
-			$(".item, .block").css("border","none").css("border-radius","5px").draggable("destroy");
+			$(".item, .block").css("border","none").draggable("destroy");
 		});	
 }
 
@@ -262,6 +262,7 @@ var gauge_opts = {
 
 var portdata;
 var portcoordinates;
+var gaugeitems = new Array();
 function updatePorts()
 {
 	portdata = loadJSON("/data/odauto.json");
@@ -329,6 +330,7 @@ function updatePorts()
 							g.minValue = parseFloat(port.Min);
 							g.set(value);
 							g.render();
+							gaugeitems[id]=g;
 							p.appendChild(a);						
 							break;
 							
@@ -354,7 +356,9 @@ function updatePorts()
 							p.className = "hidden";
 					}
 					p.onclick=function(){
-						$(this).find("div.screen, div.panel").toggleClass("hidden");
+						if (configurationMode==false){
+							$(this).find("div.screen, div.panel").toggleClass("hidden");
+						}
 					}			
 					floor.appendChild(p);
 				}
@@ -368,6 +372,12 @@ function updatePorts()
 					$("#"+id+ " a").removeClass("on");
 					$("#"+id+ " a").addClass("off");
 				}
+				$("#"+id + "a").text(value);
+				if (typeof gaugeitems[id] != "undefined") {
+					gaugeitems[id].set(parseFloat(value));
+				}
+				$("#" + id +"_slide").val(parseFloat(value));
+				
 			}catch(e){
 				console.log("Port " + id + " omitted: "+e.message);
 			}
@@ -378,7 +388,7 @@ function updatePorts()
 	}
 	
 	var gauge_array = $(".gauge");
-	var gaugeitems = new Array();
+
 
 	$( "div.slider").slider();
 
