@@ -287,7 +287,6 @@ function updatePorts()
 					p.setAttribute("id",id);
 					var a  = document.createElement("a");
 					a.setAttribute("id",port.Id.replace("/","_")+"_switch");
-					a.appendChild(document.createTextNode(value));
 					a.setAttribute("title",port.Id);
 					
 					switch(type){
@@ -295,6 +294,7 @@ function updatePorts()
 						case "do":
 							p.className="item "+tag; 
 							a.className = value;
+							a.appendChild(document.createTextNode(value));
 							a.onclick = function() {
 								var newval = this.className.indexOf("off")==-1?"off":"on";
 								var portname = this.parentNode.id.replace("_","/");
@@ -310,31 +310,34 @@ function updatePorts()
 						case "di": // Digital input. Ignore?
 							p.className = "hidden";
 							a.className = value;
+							a.appendChild(document.createTextNode(value));
 							p.appendChild(a);						
 							break;
 							
 						case "ai":  // Analog input
 							p.className="block "+tag;  
+							value = parseFloat(value);							
+							a.appendChild(document.createTextNode(value));
 							p.innerHTML = "<div class='screen hidden'><p>Show the data here</p></div>";
 							var c = document.createElement("canvas");
 							c.className = "gauge";
 							c.setAttribute("id",id + "_gauge");
 							var g = new Gauge(c);
 							g.setOptions(gauge_opts);
-							value = parseFloat(value);
 							p.appendChild(a);						
 							break;
 							
 						case "av":
 						case "ao": // Analog output or virtual
-							p.className="block "+tag;  
-							p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
-								"<div id='"+id+"_slide' class='slider'></div></div>";
-							p.onclick = function () {
-								$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
-							};						
-							p.appendChild(a);
 							value = parseFloat(value);						
+							a.appendChild(document.createTextNode(value));
+							p.className="block "+tag;  
+							p.innerHTML = "<div class='panel hidden'><input type='text' size='2' id='"+id+"_value'/>" +
+								"<div id='"+id+"_slide' class='slider'></div></div>";
+							/*p.onclick = function () {
+								$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
+							};	*/					
+							p.appendChild(a);
 							break;
 							
 						case "img":// Image
@@ -346,7 +349,7 @@ function updatePorts()
 							p.className = "hidden";
 					}
 					p.onclick=function(){
-						$(this).find("div.screen").toggleClass("hidden");
+						$(this).find("div.screen, div.panel").toggleClass("hidden");
 					}			
 					floor.appendChild(p);
 				}
@@ -372,6 +375,7 @@ function updatePorts()
 	var gauge_array = $(".gauge");
 	var gaugeitems = new Array();
 
+	$( "div.slider").slider();
 
 	/*for (i=0;i<gauge_array.length;i++) {
 		gaugeitems[i] = new Gauge(gauge_array[i]);

@@ -35,6 +35,7 @@ a{
 	height: 48px;
 	width: 48px;
 	background-repeat: no-repeat;
+	text-align: center;
 }
 
 /* Object's CLASS defines appearance  (disabled for homogeneity)
@@ -92,7 +93,7 @@ a.off {
 }
 
 .light-on>.panel, .light-off>.panel {
-	display:none;
+
 }
 .panel {
 	position: absolute;
