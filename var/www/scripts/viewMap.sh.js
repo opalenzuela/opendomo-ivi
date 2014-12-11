@@ -318,12 +318,17 @@ function updatePorts()
 							p.className="block "+tag;  
 							value = parseFloat(value);							
 							a.appendChild(document.createTextNode(value));
-							p.innerHTML = "<div class='screen hidden'><p>Show the data here</p></div>";
+							p.innerHTML = "<div class='screen hidden'>Historical data not available</div>";
 							var c = document.createElement("canvas");
 							c.className = "gauge";
 							c.setAttribute("id",id + "_gauge");
+							a.appendChild(c);
 							var g = new Gauge(c);
 							g.setOptions(gauge_opts);
+							g.maxValue = parseFloat(port.Max);	
+							g.minValue = parseFloat(port.Min);
+							g.set(value);
+							g.render();
 							p.appendChild(a);						
 							break;
 							
@@ -332,11 +337,11 @@ function updatePorts()
 							value = parseFloat(value);						
 							a.appendChild(document.createTextNode(value));
 							p.className="block "+tag;  
-							p.innerHTML = "<div class='panel hidden'><input type='text' size='2' id='"+id+"_value'/>" +
+							p.innerHTML = "<div class='panel hidden'>" +
 								"<div id='"+id+"_slide' class='slider'></div></div>";
 							/*p.onclick = function () {
 								$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
-							};	*/					
+							};	*/
 							p.appendChild(a);
 							break;
 							
@@ -377,6 +382,21 @@ function updatePorts()
 
 	$( "div.slider").slider();
 
+	$("div.slider").on("slidechange",function(event,ui){
+		console.log(event);
+		var item =  $("#"+this.parentNode.parentNode.id+"_slide");
+		var value = item.slider("value");
+		this.parentNode.parentNode.lastChild.data = value;
+		//$("#"+this.parentNode.parentNode.id+"_value").val(value);
+		//alert(this.parentNode.parentNode.id + " " + value);
+		$.ajax({
+			url: "/cgi-bin/od.cgi/listControlPorts.sh?port="+this.parentNode.parentNode.id.replace("_","/")+"&value="+value+"&GUI=XML",
+			context: this
+		}).done(function() {
+			$("#"+this.parentNode.parentNode.id+"_value").val(value);
+		});		
+	});
+	
 	/*for (i=0;i<gauge_array.length;i++) {
 		gaugeitems[i] = new Gauge(gauge_array[i]);
 		gaugeitems[i].setOptions(gauge_opts);
