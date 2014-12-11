@@ -217,7 +217,7 @@ var donotsendupdate=0;
 function refreshAlarms(){
 	// TODO use the jQuery "beautiful" code
 
-	var alarm_array = document.getElementsByClassName("alarm-off");
+	var alarm_array = $(".alarm-off");
 	var n;
 	for (i=0;i<alarm_array.length;i++) {
 		n = alarm_array[i].parentNode.parentNode.id;
@@ -226,7 +226,7 @@ function refreshAlarms(){
 		g.style.color="inherit";
 	}
 				
-	var alarm_array = document.getElementsByClassName("alarm-on");
+	var alarm_array = $(".alarm-on");
 	var n;
 	for (i=0;i<alarm_array.length;i++) {
 		n = alarm_array[i].parentNode.parentNode.id;
@@ -301,7 +301,7 @@ function updatePorts()
 					break;				
 			}*/
 			
-			if (!p) {
+			if (!p && port) {
 				var p = document.createElement("div");
 				p.setAttribute("id",id);
 				var a  = document.createElement("a");
@@ -369,7 +369,7 @@ function updatePorts()
 		}
 	}
 	
-	var gauge_array = document.getElementsByClassName("gauge");
+	var gauge_array = $(".gauge");
 	var gaugeitems = new Array();
 
 
