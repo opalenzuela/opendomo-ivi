@@ -30,7 +30,7 @@ a{
 }
 .container div a{
 	display: block; 
-	color:transparent!important;
+	/*color:transparent!important; */
 	position: absolute; 
 	height: 48px;
 	width: 48px;
@@ -111,7 +111,7 @@ a.off {
 	border-radius:10px;
 }
 .screen, .panel {
-	display:none;
+	/*display:none; */
 	z-index: 100;
 	background-color: white;
 	padding: 5px;

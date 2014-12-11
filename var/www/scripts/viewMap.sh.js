@@ -1,3 +1,8 @@
+include_script("/scripts/vendor/jquery-ui.js");
+include_script("/scripts/vendor/jquery.ui.touch-punch.js");
+include_script("/scripts/vendor/raphael-min.js");
+include_script("/scripts/vendor/gauge.js");
+
 jQuery(function($) {
 	var id = document.getElementById("ivi");
 	
@@ -66,10 +71,6 @@ jQuery(function($) {
 		</div>");
 		*/
 		
-	include_script("/scripts/vendor/jquery-ui.js");
-	include_script("/scripts/vendor/jquery.ui.touch-punch.js");
-	include_script("/scripts/vendor/raphael-min.js");
-	include_script("/scripts/vendor/gauge.js");
 	
 	setTimeout(function(){
 		// Activate the accordion effect
@@ -271,101 +272,100 @@ function updatePorts()
 	if (portdata==null) return;
 	
 	for(var i=0;i<portdata.ports.length;i++) {
-		try{
-			var port = portdata.ports[i];
-			var id = port.Id.replace("/","_");
-			var p = document.getElementById(id);
-			//var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
-			var type = port.Type.toLowerCase(); // di|do|ai|ao ...
-			var tag = port.Tag?port.Tag:"light";
-			var value = port.Value.toLowerCase();
-			/*switch(t){
-				case "l":
-				case "_":
-					tag="light";
-					break;
-				case "c":
-					tag="fanhot";
-					break;
-				case "s":
-					tag="security";
-					break;
-				case "p":
-					tag="power";
-					break;
-				case "m":
-					tag="measure";
-					break;
-				case "a":
-					tag="access";
-					break;				
-			}*/
-			
-			if (!p && port) {
-				var p = document.createElement("div");
-				p.setAttribute("id",id);
-				var a  = document.createElement("a");
-				a.setAttribute("id",port.Id.replace("/","_")+"_switch");
-				a.appendChild(document.createTextNode(tag));
-				a.setAttribute("title",port.Id);
-				if (type=="do" || type=="dv") {
-					p.className="item "+tag; 
-					a.className = value;
-					a.onclick = function() {
-						var newval = this.className.indexOf("off")==-1?"off":"on";
-						var portname = this.parentNode.id.replace("_","/");
-						var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+portname+"&value="+newval;
-						$.get(uri,function(){
-							//setTimeout(updatePorts,1000);
+		var port = portdata.ports[i];
+		if (port!=0) {
+			try{
+				var id = port.Id.replace("/","_");
+				var p = document.getElementById(id);
+				//var t = port.Type[3].toLowerCase(); // The one-letter tag (or "_")
+				var type = port.Type.toLowerCase(); // di|do|ai|ao ...
+				var tag = port.Tag?port.Tag:"light";
+				var value = port.Value.toLowerCase();
+				
+				if (!p) {
+					var p = document.createElement("div");
+					p.setAttribute("id",id);
+					var a  = document.createElement("a");
+					a.setAttribute("id",port.Id.replace("/","_")+"_switch");
+					a.appendChild(document.createTextNode(value));
+					a.setAttribute("title",port.Id);
+					
+					switch(type){
+						case "dv":
+						case "do":
+							p.className="item "+tag; 
+							a.className = value;
+							a.onclick = function() {
+								var newval = this.className.indexOf("off")==-1?"off":"on";
+								var portname = this.parentNode.id.replace("_","/");
+								var uri = "/cgi-bin/od.cgi/listControlPorts.sh?port="+portname+"&value="+newval;
+								$.get(uri,function(){
+									//setTimeout(updatePorts,1000);
+									}
+								);
 							}
-						);
+							p.appendChild(a);							
+							break;
+							
+						case "di": // Digital input. Ignore?
+							p.className = "hidden";
+							a.className = value;
+							p.appendChild(a);						
+							break;
+							
+						case "ai":  // Analog input
+							p.className="block "+tag;  
+							p.innerHTML = "<div class='screen hidden'><p>Show the data here</p></div>";
+							var c = document.createElement("canvas");
+							c.className = "gauge";
+							c.setAttribute("id",id + "_gauge");
+							var g = new Gauge(c);
+							g.setOptions(gauge_opts);
+							value = parseFloat(value);
+							p.appendChild(a);						
+							break;
+							
+						case "av":
+						case "ao": // Analog output or virtual
+							p.className="block "+tag;  
+							p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
+								"<div id='"+id+"_slide' class='slider'></div></div>";
+							p.onclick = function () {
+								$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
+							};						
+							p.appendChild(a);
+							value = parseFloat(value);						
+							break;
+							
+						case "img":// Image
+							p.className="item "+tag;  
+							p.innerHTML = "<img src='" + value + "'>";						
+							break;
+							
+						default:
+							p.className = "hidden";
 					}
-					p.appendChild(a);
-				} else if (type=="di") { // Digital input. Ignore?
-					p.className = "hidden";
-					a.className = value;
-					p.appendChild(a);
-				} else if (type=="ai"){ // Analog input
-					p.className="block "+tag;  
-					p.innerHTML = "<div class='screen'><p>Show the data here</p></div>";
-					var c = document.createElement("canvas");
-					c.className = "gauge";
-					c.setAttribute("id",id + "_gauge");
-					var g = new Gauge(c);
-					g.setOptions(gauge_opts);
-					value = parseFloat(value);
-					p.appendChild(a);
-				} else if (type=="ao" ||type=="av"){ // Analog output or virtual
-					p.className="block "+tag;  
-					p.innerHTML = "<div class='panel'><input type='text' size='2' id='"+id+"_value'/>" +
-						"<div id='"+id+"_slide' class='slider'></div></div>";
-					p.onclick = function () {
-						$(this.childNodes[1]).toggle("highlight",{percent:0},500 );
-					};						
-					p.appendChild(a);
-					value = parseFloat(value);
-				} else if (type=="img"){ // Image
-					p.className="item "+tag;  
-					p.innerHTML = "<img src='" + value + "'>";
-
-				} else {
-					p.className = "hidden";
+					p.onclick=function(){
+						$(this).find("div.screen").toggleClass("hidden");
+					}			
+					floor.appendChild(p);
 				}
 				
-				floor.appendChild(p);
+				if (value=="") {
+					$("#"+id+ " a").addClass("hidden");
+				}else if(value=="on"){
+					$("#"+id+ " a").removeClass("off");
+					$("#"+id+ " a").addClass("on");
+				} else if (value=="off"){
+					$("#"+id+ " a").removeClass("on");
+					$("#"+id+ " a").addClass("off");
+				}
+			}catch(e){
+				console.log("Port " + id + " omitted: "+e.message);
 			}
-			
-			if (value=="") {
-				$("#"+id+ " a").addClass("hidden");
-			}else if(value=="on"){
-				$("#"+id+ " a").removeClass("off");
-				$("#"+id+ " a").addClass("on");
-			} else if (value=="off"){
-				$("#"+id+ " a").removeClass("on");
-				$("#"+id+ " a").addClass("off");
-			}
-		}catch(e){
-			console.log("Port " + id + " omitted: "+e.message);
+		}
+		else {
+			console.log("Missing data for port #" + i);
 		}
 	}
 	
