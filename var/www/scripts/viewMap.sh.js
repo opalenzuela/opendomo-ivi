@@ -363,6 +363,7 @@ function updatePorts()
 					floor.appendChild(p);
 				}
 				
+				// DO NOT CREATE (items already exists). Just update values
 				if (value=="") {
 					$("#"+id+ " a").addClass("hidden");
 				}else if(value=="on"){
@@ -376,7 +377,7 @@ function updatePorts()
 				if (typeof gaugeitems[id] != "undefined") {
 					gaugeitems[id].set(parseFloat(value));
 				}
-				$("#" + id +"_slide").val(parseFloat(value));
+				$("#" + id +"_slide").value(parseFloat(value));
 				
 			}catch(e){
 				console.log("Port " + id + " omitted: "+e.message);
