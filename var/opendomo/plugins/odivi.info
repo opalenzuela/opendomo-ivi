@@ -1,4 +1,4 @@
-DESCRIPTION="Interactive Interface"
+DESCRIPTION="SCADA"
 REQUIRED_BYTES="100000"
 SCREENSHOTS="https://github.com/opalenzuela/opendomo-ivi/screenshot1.png"
 SCHEME="FEFABA FFFFFF"
